@@ -14,43 +14,60 @@ def read_text():
                 return title_contents["text"]
 
 
-# read_text()
+read_text()
 
-# # %%
-# import re
+# %%
+# 21
+import re
 
-# text = read_text()
-# results = re.findall(r"\[\[Category:.*?\n", text)
-# print("".join(results))
-
-
-# # %%
-# import re
-
-# text = read_text()
-# results = re.findall(r"\[\[Category:.*?\n", text)
-# result = re.sub(r"\[\[Category:", "", "".join(results))
-# result = re.sub(r"\]\]", "", "".join(result))
-# print(result)
+text = read_text()
+results = re.findall(r"\[\[Category:.*?\]\]", text)
+print("\n".join(results))
 
 
-# # %%
-# import re
+# %%
+# 22
+import re
 
-# text = read_text()
-# results = re.findall(r"\n=+.*=+\n", text)
-# func = lambda x: (re.sub(r"\n?=+\n?", "", x), len(re.search(r"=+", x).group()) - 1)
-# for result in results:
-#     title, level = func(result)
-#     print(f"{title}:{level}")
+text = read_text()
+results = re.findall(r"\[\[Category:.*?\]\]", text)
+result = re.sub(r"\[\[Category:|(\|.*)?\]\]", "", "\n".join(results))
+print(result)
 
 
-# # %%
-# import re
+# %%
+# 23
+import re
 
-# text = read_text()
-# results = re.findall(r"ja", text)
-# results
+text = read_text()
+results = re.findall(r"==+.*?==+", text)
+print(results)
+func = lambda x: (re.sub(r"==+|\s", "", x), len(re.search(r"==+", x).group()) - 1)
+for result in results:
+    title, level = func(result)
+    print(f"{title}:{level}")
+
+
+# %%
+# 24
+# ref :https://ja.wikipedia.org/wiki/Help:%E7%94%BB%E5%83%8F%E3%81%AA%E3%81%A9%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%A8%E5%88%A9%E7%94%A8
+import re
+
+text = read_text()
+# results = re.findall(r"\[\[ファイル:.*?\]\]", text)
+# print(results)
+results = re.findall(r".*?(?:png|gif|jpg|jpeg|xcf|pdf|mid|ogg|svg|djvu)", text)
+for result in results:
+    result = re.sub(r".*ファイル:(.+)", r"\1", result)
+    result = re.sub(
+        r".*(http:[a-zA-Z0-9_/\-\.~:]+\.)(png|gif|jpg|jpeg|xcf|pdf|mid|ogg|svg|djvu)",
+        r"\1\2",
+        result,
+    )
+    result = re.sub(r".+=\ ?", r"", result)
+    print(result)
+
+# 
 
 # %%
 import re
@@ -99,13 +116,12 @@ for base_info in result.split("\n|"):
     if field_name_search is None:
         continue
     field_name = field_name_search.group(1)
-    print(field_name)
 
     field_value_search = re.search(r"=([\s\S]*)", base_info)
     if field_value_search is None:
         continue
     field_value = field_value_search.group(1)
-
+    print([field_value])
     field_name = re.sub(r"[\s=]", "", field_name)
     field_value = re.sub(r"^=", "", field_value)
     # 26用
@@ -134,69 +150,29 @@ for key, value in result_dic.items():
     print(f"value :{value}")
     print("--------")
 
-# %%
-a = "[[ファイル:Wikipedia-logo-v2-ja.png|thumb|説明文]]"
-b = "[[Category:ヘルプ|はやみひよう]]"
-c = "[[記事名#節名|表示文字]]"
-d = "[[記事名|表示文字]]"
-e = "[[記事名]]"
-
-
-for func in funcs27:
-    assert func(a) == "[[ファイル:Wikipedia-logo-v2-ja.png|thumb|説明文]]"
-    assert func(b) == "[[Category:ヘルプ|はやみひよう]]"
-    assert func(c) == "表示文字"
-    assert func(d) == "表示文字"
-    assert func(e) == "記事名"
-# %%
-a = "[[[[ファイル:Wikipedia-logo-v2-ja.png|thumb|説明文]]]]"
-b = "[[[[Category:ヘルプ|はやみひよう]]]]"
-c = "[[記事名#節名|表示文字]]"
-d = "[[記事名|表示文字]]"
-e = "[[記事名]]"
-f = "#REDIRECT [[記事名]]]]"
-g = "#REDIRECT [[記事名#節名]]]]"
-h = "<!-- コメントアウトしたいテキスト -->a<!-- コメントアウトしたいテキスト -->"
-
-
-func28_1 = lambda x: re.sub(r"\[\[ファイル:.*?\]\]", r"", x)
-func28_2 = lambda x: re.sub(r"\[\[Category:.*?\]\]", r"", x)
-func28_3 = lambda x: re.sub(r"#REDIRECT \[\[.*?\]\]", r"", x)
-func28_4 = lambda x: re.sub(r"<!--.*?-->", r"", x)
-
-
-assert func28_1(a) == "[[]]"
-assert func28_1(b) == "[[[[Category:ヘルプ|はやみひよう]]]]"
-assert func28_1(c) == "[[記事名#節名|表示文字]]"
-assert func28_1(d) == "[[記事名|表示文字]]"
-assert func28_1(e) == "[[記事名]]"
-assert func28_1(f) == "#REDIRECT [[記事名]]]]"
-assert func28_1(g) == "#REDIRECT [[記事名#節名]]]]"
-
-assert func28_2(a) == "[[[[ファイル:Wikipedia-logo-v2-ja.png|thumb|説明文]]]]"
-assert func28_2(b) == "[[]]"
-assert func28_2(c) == "[[記事名#節名|表示文字]]"
-assert func28_2(d) == "[[記事名|表示文字]]"
-assert func28_2(e) == "[[記事名]]"
-assert func28_2(f) == "#REDIRECT [[記事名]]]]"
-assert func28_2(g) == "#REDIRECT [[記事名#節名]]]]"
-
-assert func28_3(a) == "[[[[ファイル:Wikipedia-logo-v2-ja.png|thumb|説明文]]]]"
-assert func28_3(b) == "[[[[Category:ヘルプ|はやみひよう]]]]"
-assert func28_3(c) == "[[記事名#節名|表示文字]]"
-assert func28_3(d) == "[[記事名|表示文字]]"
-assert func28_3(e) == "[[記事名]]"
-assert func28_3(f) == "]]"
-assert func28_3(g) == "]]"
-
-
-assert func28_4(h) == "a"
-
-
-print("ok")
 
 # %%
-func28_6 = lambda x: re.sub(r"<ref[\s\S]*?ref>", r"", x)
-func28_6("aa<ref>h\noge\nfafa</ref>aa")
+# 29
+
+import requests
+
+S = requests.Session()
+
+URL = "https://jp.wikipedia.org/w/api.php"
+
+
+PARAMS = {
+    "action": "query",
+    "format": "json",
+    "prop": "imageinfo",
+    "titles": f"ファイル:{result_dic['国旗画像']}",
+    "iiprop":"url"
+}
+
+R = S.get(url=URL, params=PARAMS)
+DATA = R.json()
+PAGES = DATA['query']['pages']['-1']['imageinfo'][0]['url']
+print(PAGES)
+
 
 # %%
