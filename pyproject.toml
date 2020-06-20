@@ -9,6 +9,10 @@ python = "^3.8"
 requests = "^2.23.0"
 ipykernel = "^5.3.0"
 mecab-python3 = "^0.996.5"
+jupyter = "^1.0.0"
+nbformat = "^5.0.7"
+matplotlib = "^3.2.1"
+plotly = "^4.8.1"
 
 [tool.poetry.dev-dependencies]
 
