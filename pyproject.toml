@@ -14,6 +14,7 @@ nbformat = "^5.0.7"
 matplotlib = "^3.2.1"
 plotly = "^4.8.1"
 cabocha = {git = "https://github.com/kenkov/cabocha", rev = "0.1.4"}
+pandas = "^1.0.5"
 
 [tool.poetry.dev-dependencies]
 
