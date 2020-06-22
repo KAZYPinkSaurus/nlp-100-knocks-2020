@@ -12,3 +12,6 @@ https://nlp100.github.io/
 
 ## 第4章: 形態素解析
 https://github.com/KAZYPinkSaurus/nlp-100-knocks-2020/blob/master/30-39.ipynb
+
+## 第5章: 係り受け解析
+https://github.com/KAZYPinkSaurus/nlp-100-knocks-2020/blob/master/40-49.ipynb
