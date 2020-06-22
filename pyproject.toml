@@ -13,6 +13,7 @@ jupyter = "^1.0.0"
 nbformat = "^5.0.7"
 matplotlib = "^3.2.1"
 plotly = "^4.8.1"
+cabocha = {git = "https://github.com/kenkov/cabocha", rev = "0.1.4"}
 
 [tool.poetry.dev-dependencies]
 

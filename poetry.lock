@@ -44,6 +44,18 @@ webencodings = "*"
 
 [[package]]
 category = "main"
+description = ""
+name = "cabocha"
+optional = false
+python-versions = "*"
+version = "0.1.4"
+
+[package.source]
+reference = "1ea96edc5a8dc622bdc5330b608aebd399726c5c"
+type = "git"
+url = "https://github.com/kenkov/cabocha"
+[[package]]
+category = "main"
 description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
 optional = false
@@ -748,7 +760,7 @@ version = "3.5.1"
 notebook = ">=4.4.1"
 
 [metadata]
-content-hash = "f036fbfb5ba94022e11c23430d27d224f3ccd90079c32b4c21abf04f1bdc8437"
+content-hash = "0586d5a2ff2a01b47f9c44835883ce0acf70fbd9530ba9e49b95a57bd59434be"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -768,6 +780,7 @@ bleach = [
     {file = "bleach-3.1.5-py2.py3-none-any.whl", hash = "sha256:2bce3d8fab545a6528c8fa5d9f9ae8ebc85a56da365c7f85180bfe96a35ef22f"},
     {file = "bleach-3.1.5.tar.gz", hash = "sha256:3c4c520fdb9db59ef139915a5db79f8b51bc2a7257ea0389f30c846883430a4b"},
 ]
+cabocha = []
 certifi = [
     {file = "certifi-2020.4.5.2-py2.py3-none-any.whl", hash = "sha256:9cd41137dc19af6a5e03b630eefe7d1f458d964d406342dd3edf625839b944cc"},
     {file = "certifi-2020.4.5.2.tar.gz", hash = "sha256:5ad7e9a056d25ffa5082862e36f119f7f7cec6457fa07ee2f8c339814b80c9b1"},
