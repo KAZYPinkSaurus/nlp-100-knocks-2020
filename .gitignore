@@ -1,4 +1,4 @@
 .vscode/settings.json
-files/.DS_Store
+files*
 .DS_Store
 .ipynb*
