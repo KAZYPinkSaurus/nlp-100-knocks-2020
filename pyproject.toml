@@ -18,6 +18,7 @@ pandas = "^1.0.5"
 lxml = "^4.5.1"
 networkx = "^2.4"
 pygraphviz = "^1.5"
+sklearn = "^0.0"
 
 [tool.poetry.dev-dependencies]
 
