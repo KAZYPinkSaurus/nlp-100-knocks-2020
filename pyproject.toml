@@ -20,6 +20,8 @@ networkx = "^2.4"
 pygraphviz = "^1.5"
 sklearn = "^0.0"
 gensim = "^3.8.3"
+torch = "^1.6.0"
+tqdm = "^4.48.2"
 
 [tool.poetry.dev-dependencies]
 
